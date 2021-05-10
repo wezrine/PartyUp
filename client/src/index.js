@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "bulma";
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import BaseLayout from './components/BaseLayout'
+import LandingPage from './components/LandingPage'
+import GroupsPage from './components/GroupsPage'
+import ProfilePage from './components/ProfilePage'
+import GamesPage from './components/GamesPage'
+import SearchPage from './components/SearchPage'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <BaseLayout>
+        <Route exact path = "/" component = {LandingPage} />
+        <Route path = "/groups" component = {GroupsPage} />
+        <Route path = "/profile" component = {ProfilePage} />
+        <Route path = "/games" component = {GamesPage} />
+        <Route path = "/search" component = {SearchPage} />
+      </BaseLayout>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
