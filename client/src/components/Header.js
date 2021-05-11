@@ -7,7 +7,7 @@ function Header() {
     return (
             <nav className="navbar level is-black">
                 <p className="level-item has-text-centered">
-                    <NavLink to='/search' className="link">Steam</NavLink>
+                    <NavLink to='/about' className="link">About</NavLink>
                 </p>
                 <p className="level-item has-text-centered">
                     <NavLink to='/games' className="link">Find a Party</NavLink>
