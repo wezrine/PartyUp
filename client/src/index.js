@@ -21,7 +21,7 @@ ReactDOM.render(
         <Route path = "/parties" component = {PartiesPage} />
         <Route path = "/profile" component = {ProfilePage} />
         <Route path = "/games" component = {GamesPage} />
-        <Route path = "/search" component = {SearchPage} />
+        <Route path = "/about" component = {SearchPage} />
       </BaseLayout>
     </BrowserRouter>
   </React.StrictMode>,
