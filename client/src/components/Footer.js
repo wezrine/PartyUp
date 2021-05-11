@@ -4,7 +4,7 @@ function Footer() {
         <footer className="footer">
         <div className="content has-text-centered">
             <p>
-            <strong>FindFriends</strong> by <a href="#">the crew</a>. 
+            <strong>PartyUp</strong> by <a href="#">the crew</a>. 
             <br/>
             This is a project built using JavaScript, React.js, Redux, Node.js, MongoDB, HTML, CSS, & Bulma.
             </p>
