@@ -11,6 +11,7 @@ const Party = require('./schemas/party')
 app.use(cors())
 app.use(express.json())
 
+
 mongoose.connect('mongodb+srv://wezrine:alexander@cluster0.nxus8.mongodb.net/PartyUp?retryWrites=true&w=majority', {
     useNewUrlParser: true, useUnifiedTopology: true
 }, (error) => {
@@ -24,27 +25,29 @@ mongoose.connect('mongodb+srv://wezrine:alexander@cluster0.nxus8.mongodb.net/Par
 app.get('/party/:appId', (req, res) => {
     let appId = req.params.appId
 
-    Party.find({'appId': appId}), (error, parties) => {
+    Party.find({'appId': appId}, (error, parties) => {
         if(error) {
             res.json({error: 'Unable to get parties'})
         } else {
             res.json(parties)
         }
-    }
+    })
 })
 
 app.post('/party', (req, res) => {
+    const appId = req.body.appId
     const partyName = req.body.partyName
     const gameTitle = req.body.gameTitle
     const description = req.body.description
 
     let party = new Party({
+        appId: appId,
         partyName: partyName,
         gameTitle: gameTitle,
         description: description
     })
 
-    Party.save((error) => {
+    party.save((error) => {
         if(error) {
             res.json({error: 'Unable to save!'})
         } else {
