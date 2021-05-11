@@ -1,17 +1,36 @@
+.is-black {
+  background-color: #1A1F25 !important;
+}
+
+.is-dark {
+  background-color:#303841 !important;
+}
+
+.is-info {
+  background-color: #00ADB5 !important;
+}
+
 .navbar {
   margin-bottom: 0 !important;
 }
 
 .navbar a {
   color: #fff;
+  font-size: 1.4em;
 }
 
 .navbar a:hover{
-  color: orange;
+  color: #EA0070;
+  /* border: solid #EA0070 1px; */
+  text-decoration: underline;
+}
+
+.navbar .logo {
+  height: 90px;
 }
 
 .footer {
-  background-color: #363636 !important;
+  background-color: #1A1F25 !important;
   color: #fff;
 }
 
