@@ -10,13 +10,13 @@ function Header() {
                     <NavLink to='/search' className="link">Steam</NavLink>
                 </p>
                 <p className="level-item has-text-centered">
-                    <NavLink to='/games' className="link">Games</NavLink>
+                    <NavLink to='/games' className="link">Find a Party</NavLink>
                 </p>
                 <p className="level-item has-text-centered">
                     <img className="logo" src={logo} alt="" />
                 </p>
                 <p className="level-item has-text-centered">
-                    <NavLink to='/groups' className="link">Party</NavLink>
+                    <NavLink to='/parties' className="link">Your Parties</NavLink>
                 </p>
                 <p className="level-item has-text-centered">
                     <NavLink to='/profile' className="link">Profile</NavLink>

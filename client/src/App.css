@@ -1,3 +1,5 @@
+
+/* Colors */
 .is-black {
   background-color: #1A1F25 !important;
 }
@@ -10,6 +12,7 @@
   background-color: #00ADB5 !important;
 }
 
+/* Header */
 .navbar {
   margin-bottom: 0 !important;
 }
@@ -21,13 +24,38 @@
 
 .navbar a:hover{
   color: #EA0070;
-  /* border: solid #EA0070 1px; */
   text-decoration: underline;
 }
 
 .navbar .logo {
   height: 90px;
 }
+
+/* Games */
+.searchbar-container {
+  padding: 2em 0 3em 0;
+}
+.searchbar {
+  width: 35em;
+}
+.game-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 2em 2em 2em;
+  gap: 2em;
+}
+
+.game-content .content {
+
+}
+
+/* Parties */
+.card {
+  width: 20em;
+}
+
+/* Footer */
 
 .footer {
   background-color: #1A1F25 !important;

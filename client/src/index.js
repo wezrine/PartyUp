@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import BaseLayout from './components/BaseLayout'
 import LandingPage from './components/LandingPage'
-import GroupsPage from './components/GroupsPage'
+import PartiesPage from './components/PartiesPage'
 import ProfilePage from './components/ProfilePage'
 import GamesPage from './components/GamesPage'
 import SearchPage from './components/SearchPage'
@@ -18,7 +18,7 @@ ReactDOM.render(
     <BrowserRouter>
       <BaseLayout>
         <Route exact path = "/" component = {LandingPage} />
-        <Route path = "/groups" component = {GroupsPage} />
+        <Route path = "/parties" component = {PartiesPage} />
         <Route path = "/profile" component = {ProfilePage} />
         <Route path = "/games" component = {GamesPage} />
         <Route path = "/search" component = {SearchPage} />
