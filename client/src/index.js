@@ -12,6 +12,7 @@ import PartiesPage from './components/PartiesPage'
 import ProfilePage from './components/ProfilePage'
 import GamesPage from './components/GamesPage'
 import SearchPage from './components/SearchPage'
+import AddPartyPage from './components/CreatePartyPage';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
       <BaseLayout>
         <Route exact path = "/" component = {LandingPage} />
         <Route path = "/parties" component = {PartiesPage} />
+        <Route path = "/add-party" component= {AddPartyPage} />
         <Route path = "/profile" component = {ProfilePage} />
         <Route path = "/games" component = {GamesPage} />
         <Route path = "/about" component = {SearchPage} />
