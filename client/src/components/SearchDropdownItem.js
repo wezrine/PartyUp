@@ -1,15 +1,16 @@
 import { Fragment } from 'react';
 
-export default function SearchDropdownItem(props, { result }) {
+export default function SearchDropdownItem({ result }) {
 
-    const handleClick = () => {
-        const game = "Game"
-        props.gameClicked(game)
-    }
-
+    // const handleClick = () => {
+    //     const game = "Game"
+    //     props.gameClicked(game)
+    // }
+    console.log(result)
     return (
+
       <Fragment>
-          <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width' onClick={handleClick}>
+          <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
             {/* {result.background_image ? (
               <img
                 className='autocomplete-img-style'
