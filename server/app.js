@@ -4,15 +4,18 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
+
 // const fetch = require('node-fetch')
 const axios = require('axios')
 const rawgApiKey = process.env.RAWG_API_KEY
+const userRouter = require('./routes/user')
 
 // Schema
 const Party = require('./schemas/party')
 
 app.use(cors())
 app.use(express.json())
+app.use('/user', userRouter)
 
 
 mongoose.connect('mongodb+srv://wezrine:alexander@cluster0.nxus8.mongodb.net/PartyUp?retryWrites=true&w=majority', {
