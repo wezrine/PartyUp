@@ -63,37 +63,37 @@ app.post('/party', (req, res) => {
 })
 
 
-// Autocomplete api call
-const options = {
-    method: 'GET',
-    url: 'https://api.rawg.io/api/games?tags=multiplayer',
-    qs: {
-        key: rawgApiKey,
-        search: undefined
-    }
-};
+// // Autocomplete api call
+// const options = {
+//     method: 'GET',
+//     url: 'https://api.rawg.io/api/games?tags=multiplayer',
+//     qs: {
+//         key: rawgApiKey,
+//         search: undefined
+//     }
+// };
 
-const apiCall = async (url, options) => {
-    await axios(url, options)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-            }
-            return res.json();
-        })
-        .then(json => console.log(json.results[1]))
-        .catch(err => console.log(err))
-}
+// const apiCall = async (url, options) => {
+//     await axios(url, options)
+//         .then(res => {
+//             if (!res.ok) {
+//                 throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+//             }
+//             return res.json();
+//         })
+//         .then(json => console.log(json.results[1]))
+//         .catch(err => console.log(err))
+// }
 
-apiCall(options)
+// apiCall(options)
 
-app.get('/api/gameAutocomplete', async (req, res) => {
-    const query = req.query.q;
-    gameAutocomplete.qs.search = query;
-    res.set('Cache-Control', 'no-cache');
-    res.json(await apiCall(gameAutocomplete));
-    console.log(`/api/gameAutocomplete?q=${query} endpoint has been called!`);
-});
+// app.get('/api/gameAutocomplete', async (req, res) => {
+//     const query = req.query.q;
+//     gameAutocomplete.qs.search = query;
+//     res.set('Cache-Control', 'no-cache');
+//     res.json(await apiCall(gameAutocomplete));
+//     console.log(`/api/gameAutocomplete?q=${query} endpoint has been called!`);
+// });
 
 
 app.listen(8080, () => {
