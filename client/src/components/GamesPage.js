@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import GamesList from './GamesList'
+import Search from './Search';
 
 function GamesPage() {
     
@@ -26,8 +27,9 @@ function GamesPage() {
         <div className="page-container" style={{backgroundImage: `url(${"https://steamcdn-a.akamaihd.net/steam/apps/20/page_bg_generated_v6b.jpg?t=1592263625"})`}}>
             <div className="is-flex is-justify-content-center searchbar-container">
                 <div className="is-flex searchbar">
-                    <input onChange={handleChange} className="input" type="text" placeholder="Search 1172470" name='searchGame'/>
-                    <button onClick = {handleSearch} className="button is-info">Search</button>
+                    {/* <input onChange={handleChange} className="input" type="text" placeholder="Search 1172470" name='searchGame'/>
+                    <button onClick = {handleSearch} className="button is-info">Search</button> */}
+                    <Search />
                 </div>
             </div>
             <GamesList parties = {parties} />
