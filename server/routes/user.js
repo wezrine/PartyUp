@@ -7,9 +7,9 @@ require('dotenv').config()
 
 
 router.post('/register', (req, res) => {
-    const firstName = req.body.user.firstName
-    const username = req.body.user.username
-    const password = req.body.user.password
+    const firstName = req.body.firstName
+    const username = req.body.username
+    const password = req.body.password
 
     bcrypt.genSalt(10, (error, salt) => {
         bcrypt.hash(password, salt, (error, hash) => {
@@ -32,8 +32,8 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 
-    const username = req.body.user.username
-    const password = req.body.user.password
+    const username = req.body.username
+    const password = req.body.password
 
     User.findOne({
             username: username

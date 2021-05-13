@@ -77,7 +77,6 @@ function MyPartiesPage() {
                     <section className="modal-card-body">
                     <Search gameClicked={getGameData} />
                         <input onChange={handleOnChange} className='input' type='text' placeholder='Party Name' name='partyName' />
-                        {/* <input onChange={handleOnChange} className='input' type='text' placeholder='Game Title' name='gameTitle' /> */}
                         <input onChange={handleOnChange} className='input' type='text' placeholder='Description' name='description' />
                     </section>
                     <footer className="modal-card-foot">

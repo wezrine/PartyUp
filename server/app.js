@@ -43,6 +43,30 @@ app.get('/party/:game', (req, res) => {
     })
 })
 
+app.post('/join/:partyId', (req, res) => {
+    const partyId = req.params.partyId
+    const userId = req.body.userId
+
+    const member = new Member({
+        userId: userId
+    })
+
+    Party.findById(partyId, (error, party) => {
+        if(error) {
+            res.json({error: 'Unable to find job'})
+        } else {
+            party.members.push(member)
+            party.save(error => {
+                if(error) {
+                    res.json({error: "Unable to save member"})
+                } else {
+                    res.json({success: true, message: 'Member has been saved!'})
+                }
+            })
+        }
+    })
+})
+
 // function addMember (userId) {
 
 //     const member = new Member({
@@ -86,8 +110,6 @@ app.post('/party', (req, res) => {
     })
 
     party.members.push(member)
-
-    console.log(party)
 
     party.save((error) => {
         if (error) {
