@@ -1,9 +1,9 @@
 body {
-  background: #303841;
+  background: #1B2838;
 }
 
 .page-content {
-  background: #303841 !important;
+  background: #1B2838 !important;
 }
 
 .page-container {
@@ -13,6 +13,14 @@ body {
   background-size: cover;
   position: relative;
   width: 100%;
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+  box-shadow: inset 0 0 5em 4em #1B2838;
+}
+
+
+.find-party-content {
+  z-index: 2;
 }
 
 /* Colors */
