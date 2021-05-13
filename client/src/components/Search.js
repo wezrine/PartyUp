@@ -12,7 +12,6 @@ function Search(props) {
             try {
                 const response = await fetch(`https://api.rawg.io/api/games?key=00b7a7b22bfb4713982e46a6c4c79bf3&search=${gameName.toLowerCase()}&tags=multiplayer`);
                 const json = await response.json();
-                console.log(json)
                 setData(json);
                 setDataIsReady(true);
             } catch (err) {
@@ -33,9 +32,10 @@ function Search(props) {
         // setKeyword('')
     }
 
-    // const gameClicked = (game) => {
-    //     props.gameClicked(game)
-    // }
+    const gameClicked = (game) => {
+        setDropdownIsopened(false)
+        props.gameClicked(game)
+    }
 
     return (
         <Fragment>
@@ -50,9 +50,9 @@ function Search(props) {
                 {dataIsReady ? (
                     <Fragment>
                         {dropdownIsopened ? (
-                            <div>
+                            <div className="dropdown-content">
                                 <ul>
-                                    {data.count >= 1 ? (data.results.slice(0, 8).map(result => <SearchDropdownItem key={result.id} result={result}/>)) : (<SearchDropdownItemNoResult />)}
+                                    {data.count >= 1 ? (data.results.slice(0, 8).map(result => <SearchDropdownItem gameClicked={gameClicked} key={result.id} result={result}/>)) : (<SearchDropdownItemNoResult />)}
                                 </ul>
                                 <div id='dropdownOverlay' onClick={closeDropdown} className='overlay-style'></div>
                             </div>

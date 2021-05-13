@@ -28,10 +28,10 @@ mongoose.connect('mongodb+srv://wezrine:alexander@cluster0.nxus8.mongodb.net/Par
     }
 })
 
-app.get('/party/:appId', (req, res) => {
-    let appId = req.params.appId
+app.get('/party/:game', (req, res) => {
+    let game = req.params.game
 
-    Party.find({ 'appId': appId }, (error, parties) => {
+    Party.find({ 'gameTitle': game }, (error, parties) => {
         if (error) {
             res.json({ error: 'Unable to get parties' })
         } else {

@@ -1,9 +1,18 @@
+body {
+  background: #303841;
+}
+
 .page-content {
   background: #303841 !important;
 }
 
 .page-container {
-  min-height: 75vh;
+  min-height: 90vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  width: 100%;
 }
 
 /* Colors */
@@ -47,8 +56,8 @@
   padding: 2em 0 3em 0;
 }
 
-.searchbar {
-  width: 35em;
+.searchbar-container .searchbar input {
+  width: 30em;
 }
 
 .party-content {
@@ -58,9 +67,13 @@
   padding: 0 2em 2em 2em;
   gap: 2em;
 }
+.dropdown-item:hover {
+  background: #00ADB5;
+  color: white;
+}
 
-.party-content .content {
-
+.dropdown-li {
+  align-items: center;
 }
 
 /* Parties */

@@ -2,8 +2,6 @@
 function GamesList (props) {
 
     const parties = props.parties
-
-    console.log(parties)
     
     const partyItems = parties.map((party, index) => {
         return (

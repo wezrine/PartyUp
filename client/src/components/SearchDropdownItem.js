@@ -1,17 +1,17 @@
 import { Fragment } from 'react';
 
-export default function SearchDropdownItem({ result }) {
+export default function SearchDropdownItem(props) {
 
-    // const handleClick = () => {
-    //     const game = "Game"
-    //     props.gameClicked(game)
-    // }
-    console.log(result)
+    const result = props.result
+
+    const handleClick = (result) => {
+      props.gameClicked(result)
+    }
+
     return (
-
-      <Fragment>
-          <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
-            {/* {result.background_image ? (
+      <div onClick={() => handleClick(result)} className="dropdown-item">
+        <li key={result.id + 'li'} className='is-flex dropdown-li my-1 text-nowrap d-inline-block text-truncate result-list-width'>
+            {result.background_image ? (
               <img
                 className='autocomplete-img-style'
                 width='45'
@@ -29,7 +29,7 @@ export default function SearchDropdownItem({ result }) {
                 <circle cx='45' cy='45' r='45' fill='#D5D8DC' />
                 Sorry, your browser does not support inline SVG.
               </svg>
-            )} */}
+            )}
             <span key={result.id + 'span'} className='mx-1'>
               {result.released && result.name.includes(result.released.match(/[0-9]{4}/))
                 ? result.name.replace(/\([0-9]{4}\)/, '').trim()
@@ -37,14 +37,14 @@ export default function SearchDropdownItem({ result }) {
               ({result.released ? result.released.match(/[0-9]{4}/) : 'n/a'})
             </span>
           </li>
-      </Fragment>
+      </div>
     );
   }
   
   export function SearchDropdownItemNoResult() {
     return (
       <li className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
-        <span className='mx-1'>no results found...</span>
+        <span className='mx-1'>No results found...</span>
       </li>
     );
   }
