@@ -50,9 +50,14 @@ body {
   font-size: 1.4em;
 }
 
-.navbar a:hover{
+/* .navbar a:hover{
   color: #EA0070;
   text-decoration: underline;
+} */
+
+p.navbar-item:hover {
+  background:#EA0070 !important;
+  color: #fff !important;
 }
 
 .navbar .logo {
