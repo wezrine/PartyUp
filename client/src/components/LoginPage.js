@@ -9,6 +9,7 @@ import * as actionCreators from './store/creators/actionCreators'
 const LoginPage = (props) => {
 
     const [user, setUser] = useState({})
+    const [isRegisterActive, setisRegisterActive] = useState(false)
 
     const handleOnChange = (event) => {
         setUser({
@@ -23,41 +24,86 @@ const LoginPage = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             }, 
-            body: JSON.stringify({user})
+            body: JSON.stringify(user)
         }).then(response => response.json())
         .then(result => {
             if(result.success) {
                 const token = result.token
-                const username = result.username
-                const firstName = result.firstName
-                const userId = result.userId
-                console.log(result)
-                // get the token and put it in local storage
                 localStorage.setItem("jsonwebtoken", token)
-                localStorage.setItem("username", username)
-                localStorage.setItem("firstName", firstName)
-                localStorage.setItem("userId", userId)
-                // set the authentication header
-                setAuthenticationHeader(token)
-                // dispatch to redux
-                props.onLogin()
-                // take the user to the dashboard screen
-                props.history.push('/profile')
+                localStorage.setItem("username", result.username)
+                localStorage.setItem("userId", result.userId)
+                setAuthenticationHeader(token) // set the authentication header
+                props.onLogin(token)
+                props.history.push('/') // take the user to the landing screen
             }
         })
     }
 
-    return (
-        <div>
-            <div>
-                <h3>Login</h3>
-                <input onChange = {handleOnChange} type="text" placeholder="Username" name="username"></input>
-                <input onChange = {handleOnChange} type="password" placeholder="Password" name="password"></input>
-                <button onClick = {handleLogin}>Login</button>
-            </div>
-            <NavLink to = "/registration"><div className="link bootstrap-link">Register</div></NavLink>
-        </div>
+    const handleContinueAsGuest = () => {
 
+        let guest = {
+            username: 'guest',
+            password: 'guest123'
+        }
+
+        fetch('http://localhost:8080/user/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(guest)
+        }).then(response => response.json())
+        .then(result => {
+            if(result.success) {
+                const token = result.token
+                localStorage.setItem("jsonwebtoken", token)
+                localStorage.setItem("username", result.username)
+                localStorage.setItem("userId", result.userId)
+                setAuthenticationHeader(token) // set the authentication header
+                props.onLogin(token)
+                props.history.push('/') // take the user to the landing screen
+            }
+        })
+    }
+
+    const handleRegister = () => {
+        fetch('http://localhost:8080/user/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then(() => {
+            setisRegisterActive(false)
+        })
+    }
+
+
+    return (
+        <div className="login-box">
+            <div className="login modal-card">
+                <header className="modal-card-head">
+                    {isRegisterActive ? <p className="modal-card-title">Register</p> : <p className="modal-card-title">Login</p>}
+                </header>
+                <section className="modal-card-body vertical">
+                    <div className='login-row is-flex'>
+                        <span className="icon"><i className="fas fa-user"></i></span>
+                        <input onChange={handleOnChange} className="login input" type="text" placeholder="Username" name="username" />
+                    </div>
+                    <div className='login-row is-flex'>
+                        <span className="icon"><i className="fas fa-lock"></i></span>
+                        <input onChange={handleOnChange} className="login input" type="password" placeholder="Password" name="password" />
+                    </div>
+                </section>
+                <footer className="modal-card-foot">
+                    <div>
+                        {isRegisterActive ? <button onClick={handleRegister} className="button is-link">Register</button> : <button onClick={handleLogin} className="button is-link">Login</button>}
+                        {isRegisterActive ? <button className="button" onClick={() => { setisRegisterActive(false) }}>Login</button> : <button className="button" onClick={() => { setisRegisterActive(true) }}>Register</button>}
+                    </div>
+                    {isRegisterActive ? '' : <button onClick={handleContinueAsGuest} className="guest button">Continue as Guest</button>}
+                </footer>
+            </div>
+        </div>
     )
 }
 

@@ -4,6 +4,11 @@ function GamesList (props) {
     const parties = props.parties
     
     const partyItems = parties.map((party, index) => {
+
+        const handleJoin = (partyId) => {
+            props.onJoinParty(partyId)
+        }
+
         return (
                 <div className="card" key={index}>
                     <div className="card-content">
@@ -34,7 +39,7 @@ function GamesList (props) {
                     </div>
                     <div className="card">
                         <footer className="card-footer">
-                            <a href="#" className="card-footer-item">Join</a>
+                            <p onClick={() => handleJoin(party._id)} className="card-footer-item">Join</p>
                         </footer>
                     </div>
                 </div>

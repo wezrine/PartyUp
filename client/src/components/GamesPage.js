@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react'
+import { useHistory } from "react-router-dom";
 import GamesList from './GamesList'
 import Search from './Search';
 
 function GamesPage() {
+
+    let history = useHistory()
 
     const [parties, setParties] = useState([])
     const [backgroundURL, setBackgroundURL] = useState('')
@@ -18,7 +21,18 @@ function GamesPage() {
             })
     }
 
-    // console.log(gameBackground)
+    const updateParty = (partyId) => {
+        const userId = localStorage.getItem('userId')
+        fetch(`http://localhost:8080/join/${partyId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userId})
+        }).then(() => {
+            history.push('/my-parties')
+        })
+    }
 
     return (
         <Fragment>
@@ -30,7 +44,7 @@ function GamesPage() {
                             <Search gameClicked={getParties} />
                         </div>
                     </div>
-                    <GamesList parties={parties} />
+                    <GamesList parties={parties} onJoinParty={updateParty} />
                 </div>
             </div>
         </Fragment>

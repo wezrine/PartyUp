@@ -18,7 +18,6 @@ body {
   box-shadow: inset 0 0 5em 4em #1B2838;
 }
 
-
 .find-party-content {
   z-index: 2;
 }
@@ -39,6 +38,31 @@ body {
 .is-danger {
   background-color: #EA0070 !important;
 }
+
+/* Login */
+
+.login-box {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login.modal-card {
+  height: fit-content;
+  width: fit-content !important;
+  margin: 0 !important;
+}
+
+.guest.button {
+  margin-left: 0.5em;
+}
+
+.login-row {
+  align-items: center;
+}
+
 /* Header */
 .navbar {
   margin-bottom: 0 !important;
@@ -46,13 +70,7 @@ body {
 
 .navbar a {
   color: #fff;
-  font-size: 1.4em;
 }
-
-/* .navbar a:hover{
-  color: #EA0070;
-  text-decoration: underline;
-} */
 
 .navbar-item {
   background-color: #1A1F25;
@@ -61,6 +79,10 @@ body {
 p.navbar-item:hover {
   background:#EA0070 !important;
   color: #fff !important;
+}
+
+p.login.navbar-item:hover {
+  background: none !important;
 }
 
 .navbar .logo {

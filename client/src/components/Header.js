@@ -31,9 +31,9 @@ function Header(props) {
     return (
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="https://bulma.io">
+                    <NavLink to='/' className="navbar-item">
                         <img src={logo} />
-                    </a>
+                    </NavLink>
 
                         <p onClick={() => { setisBurgerActive(!isBurgerActive) }} role="button" className={`navbar-burger burger ${isBurgerActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                             <span aria-hidden="true"></span>
@@ -67,8 +67,8 @@ function Header(props) {
                         <div className="navbar-end">
                             <div className="navbar-item">
                                 <div className="buttons">
-                                    <p className="navbar-item">
-                                        {props.isAuthenticated ? <div className="button is-danger" onClick={signOut}><strong>Sign Out</strong></div> : <NavLink to='/login' className="button is-danger" href="/login"><strong>Login</strong></NavLink>}
+                                    <p className="login navbar-item">
+                                        {props.isAuthenticated ? <button className="button is-danger" onClick={signOut}><strong>Sign Out</strong></button> : <NavLink to='/login' className="button is-danger"><strong>Login</strong></NavLink>}
                                     </p>
                                 </div>
                             </div>
