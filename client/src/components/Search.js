@@ -10,7 +10,7 @@ function Search(props) {
     async function getRawgApi(gameName) {
         if (gameName !== '') {
             try {
-                const response = await fetch(`https://api.rawg.io/api/games?key=00b7a7b22bfb4713982e46a6c4c79bf3&tags=multiplayer&search=${gameName.toLowerCase()}`);
+                const response = await fetch(`http://localhost:8080/api/search?search=${gameName.toLowerCase()}`);
                 const json = await response.json();
                 setData(json);
                 setDataIsReady(true);
