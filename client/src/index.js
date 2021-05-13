@@ -16,13 +16,12 @@ import requireAuth from './components/requireAuth';
 import * as actionCreators from './components/store/creators/actionCreators';
 import BaseLayout from './components/BaseLayout'
 import LandingPage from './components/LandingPage'
-import PartiesPage from './components/PartiesPage'
+import MyPartiesPage from './components/MyPartiesPage'
 import ProfilePage from './components/ProfilePage'
 import GamesPage from './components/GamesPage'
 import SearchPage from './components/SearchPage'
 import LoginPage from './components/LoginPage';
 import RegistrationPage from './components/RegistrationPage';
-import AddPartyPage from './components/CreatePartyPage';
 
 // creates the Central Store (which stores the entire application state)
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -43,8 +42,7 @@ ReactDOM.render(
         <BaseLayout>
           <Switch>
             <Route exact path = "/" component = {LandingPage} />
-            <Route path = "/parties" component = {requireAuth(PartiesPage)} />
-            <Route path = "/add-party" component= {AddPartyPage} />
+            <Route path = "/my-parties" component = {requireAuth(MyPartiesPage)} />
             <Route path = "/profile" component = {requireAuth(ProfilePage)} />
             <Route path = "/games" component = {GamesPage} />
             <Route path = "/about" component = {SearchPage} />
