@@ -38,7 +38,6 @@ body {
 
 .is-danger {
   background-color: #EA0070 !important;
-  ;
 }
 /* Header */
 .navbar {
@@ -55,6 +54,10 @@ body {
   text-decoration: underline;
 } */
 
+.navbar-item {
+  background-color: #1A1F25;
+}
+
 p.navbar-item:hover {
   background:#EA0070 !important;
   color: #fff !important;
@@ -62,6 +65,10 @@ p.navbar-item:hover {
 
 .navbar .logo {
   height: 90px;
+}
+
+.navbar-menu {
+  padding: 0 !important;
 }
 
 /* Games */

@@ -11,7 +11,9 @@ const rawgApiKey = process.env.RAWG_API_KEY
 const userRouter = require('./routes/user')
 
 // Schema
+const User = require('./schemas/user')
 const Party = require('./schemas/party')
+const Member = require('./schemas/member')
 
 app.use(cors())
 app.use(express.json())
@@ -40,24 +42,70 @@ app.get('/party/:game', (req, res) => {
     })
 })
 
+// function addMember (userId) {
+
+//     const member = new Member({
+//         userId: userId
+//     })
+
+//     Party.findById(partyId, (error, party) => {
+//         if(error) {
+//             res.json({error: 'Unable to find party'})
+//         } else {
+//             party.members.push(member)
+//             party.save(error=> {
+//                 if(error) {
+//                     res.json({error: "Unable to save member"})
+//                 } else {
+//                     res.json({success: true, message: "Member has been added!"})
+//                 }
+//             })
+//         }
+//     })
+
+// }
+
 app.post('/party', (req, res) => {
-    const appId = req.body.appId
+    const userId = req.body.userId
     const partyName = req.body.partyName
     const gameTitle = req.body.gameTitle
     const description = req.body.description
+    const background = req.body.background
 
     let party = new Party({
-        appId: appId,
         partyName: partyName,
         gameTitle: gameTitle,
-        description: description
+        description: description,
+        background: background,
+        members: []
     })
+
+    const member = new Member({
+        userId: userId
+    })
+
+    party.members.push(member)
+
+    console.log(party)
 
     party.save((error) => {
         if (error) {
-            res.json({ error: 'Unable to save!' })
+            // console.log(error)
+            res.json({ error: 'Unable to save!'})
         } else {
             res.json({ success: true, message: 'Saved new post' })
+        }
+    })
+})
+
+app.get('/my-parties/:userId', (req, res) => {
+    const userId = req.params.userId
+
+    Party.find({"members.userId": userId}, (error, parties) => {
+        if (error) {
+            res.json({ error: 'Unable to get parties' })
+        } else {
+            res.json(parties)
         }
     })
 })

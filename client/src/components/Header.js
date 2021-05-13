@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import logo from './logo.png'
 
 import { NavLink } from 'react-router-dom'
@@ -6,6 +7,8 @@ import { setAuthenticationHeader } from './utils/authenticate';
 import * as actionCreators from './store/creators/actionCreators'
 
 function Header(props) {
+
+    const [isBurgerActive, setisBurgerActive] = useState(false)
 
     const signOut = () => {
         // remove token from local storage
@@ -26,41 +29,20 @@ function Header(props) {
 
 
     return (
-        // <nav className="navbar level is-black">
-        //     <p className="level-item has-text-centered">
-        //         <NavLink to='/about' className="link">About</NavLink>
-        //     </p>
-        //     <p className="level-item has-text-centered">
-        //         <NavLink to='/games' className="link">Find a Party</NavLink>
-        //     </p>
-        //     <p className="level-item has-text-centered">
-        //         <img className="logo" src={logo} alt="" />
-        //     </p>
-        //     <p className="level-item has-text-centered">
-        //     {props.isAuthenticated ? <NavLink to='/parties' className="link">Your Parties</NavLink> : null}
-        //     </p>
-        //     <p className="level-item has-text-centered">
-        //     {props.isAuthenticated ? <NavLink to='/profile' className="link">Profile</NavLink> : null}
-        //     </p>
-
-        //     <p className="level-item has-text-centered">
-        //     
-        //     </p>
-        // </nav>
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="https://bulma.io">
                         <img src={logo} />
                     </a>
 
-                        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <p onClick={() => { setisBurgerActive(!isBurgerActive) }} role="button" className={`navbar-burger burger ${isBurgerActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
-                        </a>
+                        </p>
                 </div>
 
-                <div id="navbarBasicExample" className="navbar-menu">
+                <div id="navbarBasicExample" className={`navbar-menu ${isBurgerActive ? 'is-active' : ''}`}>
                     <div className="navbar-start">
                         <p className="navbar-item">
                             <NavLink to='/about' className="link">About</NavLink>
@@ -71,7 +53,7 @@ function Header(props) {
                         </p>
 
                         <p className="navbar-item">
-                            {props.isAuthenticated ? <NavLink to='/parties' className="link">Your Parties</NavLink> : null}
+                            {props.isAuthenticated ? <NavLink to='/my-parties' className="link">My Parties</NavLink> : null}
                         </p>
 
                         <p className="navbar-item">
@@ -86,7 +68,7 @@ function Header(props) {
                             <div className="navbar-item">
                                 <div className="buttons">
                                     <p className="navbar-item">
-                                        {props.isAuthenticated ? <div className="button is-danger" onClick={signOut}><strong>Sign Out</strong></div> : <div className="button is-danger" href="/login"><strong>Login</strong></div>}
+                                        {props.isAuthenticated ? <div className="button is-danger" onClick={signOut}><strong>Sign Out</strong></div> : <NavLink to='/login' className="button is-danger" href="/login"><strong>Login</strong></NavLink>}
                                     </p>
                                 </div>
                             </div>

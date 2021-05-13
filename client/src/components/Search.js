@@ -22,18 +22,18 @@ function Search(props) {
 
 
     const handleChange = event => {
-        // setKeyword(event.target.value)
         setDropdownIsopened(true)
         getRawgApi(event.target.value)
     }
 
     const closeDropdown = () => {
         setDropdownIsopened(false)
-        // setKeyword('')
     }
 
     const gameClicked = (game) => {
         setDropdownIsopened(false)
+        const searchbar = document.getElementById('searchbar')
+        searchbar.value = game.name
         props.gameClicked(game)
     }
 
@@ -41,12 +41,13 @@ function Search(props) {
         <Fragment>
             <div>
                 <input
+                    id="searchbar"
                     className="input"
                     type="text"
-                    placeholder="Type in a game..."
+                    placeholder="Enter a Game"
                     autoComplete="off"
-                    // value={keyword}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    name="gameTitle" />
                 {dataIsReady ? (
                     <Fragment>
                         {dropdownIsopened ? (
