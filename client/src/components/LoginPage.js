@@ -34,7 +34,7 @@ const LoginPage = (props) => {
                 localStorage.setItem("userId", result.userId)
                 setAuthenticationHeader(token) // set the authentication header
                 props.onLogin(token)
-                props.history.push('/') // take the user to the landing screen
+                props.history.push('/find-party') // take the user to the landing screen
             } else {
                 setMessage(result.message)
             }
@@ -63,7 +63,7 @@ const LoginPage = (props) => {
                 localStorage.setItem("userId", result.userId)
                 setAuthenticationHeader(token) // set the authentication header
                 props.onLogin(token)
-                props.history.push('/') // take the user to the landing screen
+                props.history.push('/find-party') // take the user to the landing screen
             }
         })
     }
