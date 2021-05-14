@@ -10,6 +10,7 @@ const LoginPage = (props) => {
 
     const [user, setUser] = useState({})
     const [isRegisterActive, setisRegisterActive] = useState(false)
+    const [message, setMessage] = useState('')
 
     const handleOnChange = (event) => {
         setUser({
@@ -73,8 +74,13 @@ const LoginPage = (props) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        }).then(() => {
-            setisRegisterActive(false)
+        }).then(response => response.json())
+        .then(result => {
+            if (result.success == false) {
+                setMessage(result.message)
+            } else {
+                setisRegisterActive(false)
+            }
         })
     }
 
@@ -93,6 +99,9 @@ const LoginPage = (props) => {
                     <div className='login-row is-flex'>
                         <span className="icon"><i className="fas fa-lock"></i></span>
                         <input onChange={handleOnChange} className="login input" type="password" placeholder="Password" name="password" />
+                    </div>
+                    <div className="err-message">
+                        {message}
                     </div>
                 </section>
                 <footer className="modal-card-foot">
