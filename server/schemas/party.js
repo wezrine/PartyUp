@@ -7,6 +7,7 @@ const partySchema = new mongoose.Schema({
     gameTitle: String,
     description: String,
     background: String,
+    maxMembers: Number,
     members: [Member.schema]
 })
 

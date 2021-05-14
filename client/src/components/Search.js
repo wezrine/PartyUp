@@ -42,7 +42,7 @@ function Search(props) {
             <div>
                 <input
                     id="searchbar"
-                    className="input"
+                    className="add input"
                     type="text"
                     placeholder="Enter a Game"
                     autoComplete="off"

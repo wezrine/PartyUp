@@ -3,9 +3,13 @@ import { Fragment } from 'react';
 function MyPartiesList (props) {
 
     const parties = props.parties
-    const members = props.members
 
     const partyItems = parties.map((party, index) => {
+
+        const handleLeaveParty = (partyId) => {
+            props.leaveParty(partyId)
+        }
+
         return (
             <div className="card" key={index}>
                 <div className="card-image">
@@ -15,7 +19,7 @@ function MyPartiesList (props) {
                 </div>
                 <div className="card-content">
                     <div className="is-flex is-justify-content-flex-end">
-                        <p> Online</p>
+                        <p>{party.members.length}/{party.maxMembers} Members</p>
                     </div>
                     <div className="media">
                         <div className="media-content">
@@ -28,7 +32,7 @@ function MyPartiesList (props) {
                         {party.description}
                             <br />
 
-                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        <time datetime="2016-1-1">Time</time>
                         <div>
                             <span className="tag is-danger">
                                 Casual
@@ -41,8 +45,8 @@ function MyPartiesList (props) {
                 </div>
                 <div className="card">
                     <footer className="card-footer">
-                        <a href="#" className="card-footer-item">Edit</a>
-                        <a href="#" className="card-footer-item">Delete</a>
+                        <p href="#" className="card-footer-item">Edit</p>
+                        <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
                     </footer>
                 </div>
             </div>

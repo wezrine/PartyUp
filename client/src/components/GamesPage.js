@@ -23,7 +23,7 @@ function GamesPage() {
 
     const updateParty = (partyId) => {
         const userId = localStorage.getItem('userId')
-        fetch(`http://localhost:8080/join/${partyId}`, {
+        fetch(`http://localhost:8080/party/join/${partyId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
