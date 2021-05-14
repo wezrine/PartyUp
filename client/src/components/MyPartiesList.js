@@ -10,6 +10,10 @@ function MyPartiesList (props) {
             props.leaveParty(partyId)
         }
 
+        const handleEditParty = (party) => {
+            props.editParty(party)
+        }
+
         return (
             <div className="card" key={index}>
                 <div className="card-image">
@@ -45,7 +49,7 @@ function MyPartiesList (props) {
                 </div>
                 <div className="card">
                     <footer className="card-footer">
-                        <p href="#" className="card-footer-item">Edit</p>
+                        <p onClick={() => handleEditParty(party)} className="card-footer-item">Edit</p>
                         <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
                     </footer>
                 </div>
