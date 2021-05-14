@@ -8,7 +8,8 @@ const partySchema = new mongoose.Schema({
     description: String,
     background: String,
     maxMembers: Number,
-    members: [Member.schema]
+    members: [Member.schema],
+    dateCreated: String
 })
 
 const Party = mongoose.model('Party', partySchema)

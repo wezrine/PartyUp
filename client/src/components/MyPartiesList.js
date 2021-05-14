@@ -36,7 +36,7 @@ function MyPartiesList (props) {
                         {party.description}
                             <br />
 
-                        <time datetime="2016-1-1">Time</time>
+                        <time datetime="2016-1-1">{party.dateCreated}</time>
                         <div>
                             <span className="tag is-danger">
                                 Casual
