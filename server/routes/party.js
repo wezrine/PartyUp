@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
     const description = req.body.description
     const background = req.body.background
     const maxMembers = req.body.maxMembers
+    const dateCreated = req.body.dateCreated
 
     let party = new Party({
         partyName: partyName,
@@ -19,7 +20,8 @@ router.post('/', (req, res) => {
         description: description,
         background: background,
         maxMembers: maxMembers,
-        members: []
+        members: [],
+        dateCreated: dateCreated
     })
 
     const member = new Member({

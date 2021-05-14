@@ -26,7 +26,7 @@ function GamesList (props) {
                             {party.description}
                             <br />
 
-                            <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            <time dateTime="2016-1-1">{party.dateCreated}</time>
                             <div>
                                 <span className="tag is-danger">
                                     Casual
