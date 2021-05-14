@@ -50,11 +50,11 @@ router.post('/login', (req, res) => {
                         const token = jwt.sign({ username: username}, process.env.TOKEN_SECRET_KEY)
                         res.json({success: true, token: token, username: username, firstName: user.firstName, userId: user._id})
                 } else {
-                    res.send('incorrect username/password')
+                    res.json({message: 'Incorrect username/password'})
                 }
             })
         }).catch((error) => {
-            res.send('incorrect username/password')
+            res.send({message: 'Incorrect username/password'})
         })
 })
 

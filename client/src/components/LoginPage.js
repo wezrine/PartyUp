@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import { setAuthenticationHeader } from './utils/authenticate'
-import { NavLink} from 'react-router-dom'
 import * as actionCreators from './store/creators/actionCreators'
 
 
@@ -36,6 +35,8 @@ const LoginPage = (props) => {
                 setAuthenticationHeader(token) // set the authentication header
                 props.onLogin(token)
                 props.history.push('/') // take the user to the landing screen
+            } else {
+                setMessage(result.message)
             }
         })
     }
