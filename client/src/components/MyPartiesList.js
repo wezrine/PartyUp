@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 function MyPartiesList (props) {
 
     const parties = props.parties
+    const members = props.members
 
     const partyItems = parties.map((party, index) => {
         return (
@@ -14,7 +15,7 @@ function MyPartiesList (props) {
                 </div>
                 <div className="card-content">
                     <div className="is-flex is-justify-content-flex-end">
-                        <p>5 Online</p>
+                        <p> Online</p>
                     </div>
                     <div className="media">
                         <div className="media-content">

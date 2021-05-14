@@ -10,6 +10,7 @@ function MyPartiesPage() {
     const [isModalActive, setIsModalActive] = useState(false)
     const [party, setParty] = useState({})
     const [parties, setParties] = useState([])
+    const [members, setMembers] = useState([])
 
     useEffect (() => {
         getMyParties()
@@ -38,7 +39,10 @@ function MyPartiesPage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(party)
-        }).then(history.push('/games'))
+        }).then(() => {
+            setIsModalActive(false)
+            getMyParties()
+        })
     }
 
     const getGameData = (game) => {
@@ -56,6 +60,8 @@ function MyPartiesPage() {
         .then(response => response.json())
         .then(parties => {
             setParties(parties)
+            setMembers(parties.members)
+            console.log(members)
         })
     }
 
@@ -65,7 +71,7 @@ function MyPartiesPage() {
                 <button onClick={openModal} className="button is-info">Create A New Party</button>
             </div>
             <div className="party-content">
-                <MyPartiesList parties = {parties} />
+                <MyPartiesList parties = {parties} members = {members} />
             </div>
             <div className={`modal ${isModalActive ? 'is-active' : ''}`}>
                 <div className="modal-background"></div>
