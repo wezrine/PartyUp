@@ -42,6 +42,14 @@ function MyPartiesPage() {
         }).then(() => {
             setIsModalActive(false)
             getMyParties()
+            const partyName = document.getElementById('partyName')
+            const description = document.getElementById('description')
+            const gameTitle = document.getElementById('searchbar')
+            const maxMembers = document.getElementById('maxMembers')
+            partyName.value = ""
+            description.value = ""
+            gameTitle.value = ""
+            maxMembers.value = ""
         })
     }
 
@@ -51,17 +59,27 @@ function MyPartiesPage() {
             gameTitle: game.name,
             background: game.background_image
         })
-        console.log(game.background_image)
     }
 
     const getMyParties = () => {
         const userId = localStorage.getItem('userId') 
-        fetch(`http://localhost:8080/my-parties/${userId}`)
+        fetch(`http://localhost:8080/party/my-parties/${userId}`)
         .then(response => response.json())
         .then(parties => {
             setParties(parties)
-            setMembers(parties.members)
-            console.log(members)
+        })
+    }
+
+    const removeUserFromParty = (partyId) => {
+        const userId = localStorage.getItem('userId')
+        fetch(`http://localhost:8080/party/leave/${partyId}/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => response.json())
+        .then(result => {
+            getMyParties()
         })
     }
 
@@ -71,7 +89,7 @@ function MyPartiesPage() {
                 <button onClick={openModal} className="button is-info">Create A New Party</button>
             </div>
             <div className="party-content">
-                <MyPartiesList parties = {parties} members = {members} />
+                <MyPartiesList parties = {parties} members = {members} leaveParty = {removeUserFromParty} />
             </div>
             <div className={`modal ${isModalActive ? 'is-active' : ''}`}>
                 <div className="modal-background"></div>
@@ -81,9 +99,10 @@ function MyPartiesPage() {
                         <button onClick={closeModal} className="delete" aria-label="close"></button>
                     </header>
                     <section className="modal-card-body">
-                    <Search gameClicked={getGameData} />
-                        <input onChange={handleOnChange} className='input' type='text' placeholder='Party Name' name='partyName' />
-                        <input onChange={handleOnChange} className='input' type='text' placeholder='Description' name='description' />
+                        <Search gameClicked={getGameData} />
+                        <input onChange={handleOnChange} id="partyName" className='input' type='text' placeholder='Party Name' name='partyName' />
+                        <input onChange={handleOnChange} id="description" className='input' type='text' placeholder='Description' name='description' />
+                        <input onChange={handleOnChange} id="maxMembers" type="number" className="input" min="2" max="32" placeholder="Number of Members" name="maxMembers"/>
                     </section>
                     <footer className="modal-card-foot">
                         <button onClick={handleAddParty} className="button is-danger">Create Party</button>
