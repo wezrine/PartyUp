@@ -30,10 +30,21 @@ router.post('/', (req, res) => {
 
     party.save((error) => {
         if (error) {
-            // console.log(error)
             res.json({ error: 'Unable to save!'})
         } else {
             res.json({ success: true, message: 'Saved new post' })
+        }
+    })
+})
+
+router.put('/', (req, res) => {
+    const updatedParty = req.body.updatedParty
+    
+    Party.findByIdAndUpdate(updatedParty._id, updatedParty, (error, result) => {
+        if(error) {
+            res.json({error: 'Unable to update'})
+        } else {
+            res.json({success: true})
         }
     })
 })

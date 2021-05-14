@@ -7,27 +7,40 @@ function MyPartiesPage() {
 
     let history = useHistory()
 
-    const [isModalActive, setIsModalActive] = useState(false)
+    const [isAddModalActive, setIsAddModalActive] = useState(false)
+    const [isEditModalActive, setIsEditModalActive] = useState(false)
+    const [editedParty, setEditedParty] = useState({})
     const [party, setParty] = useState({})
     const [parties, setParties] = useState([])
-    const [members, setMembers] = useState([])
 
     useEffect (() => {
         getMyParties()
     }, [])
 
-    const openModal = () => {
-        setIsModalActive(true)
+    const openAddModal = () => {
+        setIsAddModalActive(true)
     }
 
-    const closeModal = () => {
-        setIsModalActive(false)
+    const closeAddModal = () => {
+        setIsAddModalActive(false)
+    }
+
+    const closeEditModal = () => {
+        setIsEditModalActive(false)
+        setEditedParty({})
     }
 
     const handleOnChange = (e) => {
         setParty({
             ...party,
             userId: localStorage.getItem('userId'),
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleOnChangeEditedParty = (e) => {
+        setEditedParty({
+            ...editedParty,
             [e.target.name]: e.target.value
         })
     }
@@ -40,7 +53,7 @@ function MyPartiesPage() {
             },
             body: JSON.stringify(party)
         }).then(() => {
-            setIsModalActive(false)
+            setIsAddModalActive(false)
             getMyParties()
             const partyName = document.getElementById('partyName')
             const description = document.getElementById('description')
@@ -83,20 +96,38 @@ function MyPartiesPage() {
         })
     }
 
+    const openEditParty = (party) => {
+        setIsEditModalActive(true)
+        setEditedParty(party)
+    }
+
+    const updateParty = (updatedParty) => {
+        fetch('http://localhost:8080/party', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({updatedParty})
+        }).then(() => {
+            closeEditModal()
+            getMyParties()
+        })
+    }
+
     return (
         <div>
             <div className="is-flex is-justify-content-center add-party-container">
-                <button onClick={openModal} className="button is-info">Create A New Party</button>
+                <button onClick={openAddModal} className="button is-info">Create A New Party</button>
             </div>
             <div className="party-content">
-                <MyPartiesList parties = {parties} members = {members} leaveParty = {removeUserFromParty} />
+                <MyPartiesList parties = {parties} leaveParty = {removeUserFromParty} editParty = {openEditParty} />
             </div>
-            <div className={`modal ${isModalActive ? 'is-active' : ''}`}>
+            <div className={`modal ${isAddModalActive ? 'is-active' : ''}`}>
                 <div className="modal-background"></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Create a Party</p>
-                        <button onClick={closeModal} className="delete" aria-label="close"></button>
+                        <p className="modal-card-title">Create Party</p>
+                        <button onClick={closeAddModal} className="delete" aria-label="close"></button>
                     </header>
                     <section className="modal-card-body">
                         <Search gameClicked={getGameData} />
@@ -106,7 +137,25 @@ function MyPartiesPage() {
                     </section>
                     <footer className="modal-card-foot">
                         <button onClick={handleAddParty} className="button is-danger">Create Party</button>
-                        <button onClick={closeModal} className="button">Cancel</button>
+                        <button onClick={closeAddModal} className="button">Cancel</button>
+                    </footer>
+                </div>
+            </div>
+            <div className={`modal ${isEditModalActive ? 'is-active' : ''}`}>
+                <div className="modal-background"></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Edit Party</p>
+                        <button onClick={closeEditModal} className="delete" aria-label="close"></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <input onChange={handleOnChangeEditedParty} className='input' type='text' placeholder='Party Name' name='partyName' defaultValue={editedParty.partyName}/>
+                        <input onChange={handleOnChangeEditedParty} className='input' type='text' placeholder='Description' name='description' defaultValue={editedParty.description}/>
+                        <input onChange={handleOnChangeEditedParty} type="number" className="input" min="2" max="32" placeholder="Number of Members" name="maxMembers" defaultValue={editedParty.maxMembers}/>
+                    </section>
+                    <footer className="modal-card-foot">
+                        <button onClick={() => updateParty(editedParty)} className="button is-danger">Update Party</button>
+                        <button onClick={closeEditModal} className="button">Cancel</button>
                     </footer>
                 </div>
             </div>
