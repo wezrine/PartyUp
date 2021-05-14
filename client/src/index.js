@@ -15,10 +15,9 @@ import BaseLayout from './components/BaseLayout'
 import LandingPage from './components/LandingPage'
 import MyPartiesPage from './components/MyPartiesPage'
 import ProfilePage from './components/ProfilePage'
-import GamesPage from './components/GamesPage'
 import AboutPage from './components/AboutPage'
 import LoginPage from './components/LoginPage';
-import RegistrationPage from './components/RegistrationPage';
+import FindPartyPage from './components/FindPartyPage';
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const token = localStorage.getItem('jsonwebtoken');
@@ -37,10 +36,9 @@ ReactDOM.render(
             <Route exact path = "/" component = {LandingPage} />
             <Route path = "/my-parties" component = {requireAuth(MyPartiesPage)} />
             <Route path = "/profile" component = {requireAuth(ProfilePage)} />
-            <Route path = "/games" component = {GamesPage} />
+            <Route path = "/find-party" component = {FindPartyPage} />
             <Route path = "/about" component = {AboutPage} />
             <Route path = "/login" component = {LoginPage} />
-            <Route path = "/registration" component = {RegistrationPage} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>

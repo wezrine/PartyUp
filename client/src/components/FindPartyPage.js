@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import GamesList from './GamesList'
 import Search from './Search';
 
-function GamesPage() {
+function FindPartyPage() {
 
     let history = useHistory()
 
@@ -51,4 +51,4 @@ function GamesPage() {
     )
 }
 
-export default GamesPage
+export default FindPartyPage

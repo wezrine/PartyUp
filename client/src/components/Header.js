@@ -49,7 +49,7 @@ function Header(props) {
                         </p>
 
                         <p className="navbar-item">
-                            <NavLink to='/games' className="link">Find a Party</NavLink>
+                            <NavLink to='/find-party' className="link">Find a Party</NavLink>
                         </p>
 
                         <p className="navbar-item">
