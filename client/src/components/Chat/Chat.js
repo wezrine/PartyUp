@@ -42,7 +42,8 @@ function Chat({ match }) {
     socketRef.current.on("message", (message) => {
       receivedMessage(message);
     })
-  }, []);
+
+  }, [match.params.partyId]);
 
   const getParty = (partyId) => {
     fetch(`http://localhost:8080/party/${partyId}`)
@@ -100,7 +101,10 @@ function Chat({ match }) {
       
 
       <main className="msger-chat">
+        {/* Past messages pulled on page load */}
       <MessageList messages={messagesReal} />
+
+      {/* Live messages */}
         {messages.map((message, index) => {
           if (message.id === localStorage.getItem('userId')) {
             return ( 
