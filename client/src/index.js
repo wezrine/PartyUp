@@ -40,7 +40,7 @@ ReactDOM.render(
             <Route path = "/find-party" component = {FindPartyPage} />
             <Route path = "/about" component = {AboutPage} />
             <Route path = "/login" component = {LoginPage} />
-            <Route path = "/chat" component = {Chat} />
+            <Route path = "/party/:partyId" component = {requireAuth(Chat)} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>

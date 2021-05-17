@@ -22,6 +22,9 @@ app.use('/user', userRouter)
 app.use('/party', partyRouter)
 app.use(express.urlencoded({ extended: false }));
 
+// Schema
+const Message = require('./schemas/message')
+
 mongoose.connect('mongodb+srv://wezrine:alexander@cluster0.nxus8.mongodb.net/PartyUp?retryWrites=true&w=majority', {
     useNewUrlParser: true, useUnifiedTopology: true
 }, (error) => {
@@ -44,13 +47,46 @@ app.get('/api/search', async(req, res) => {
 })
 
 io.on("connection", socket => {
-    socket.emit("your id", socket.id);
+    socket.emit("connection", ["Hello World", "Another Message"]);
     socket.on("send message", body => {
         io.emit("message", body)
     })
+    socket.on('setPartyId', partyId => {
+        console.log(partyId)
+        Message.find({'partyId': partyId}, (error, messages) => {
+            if(error) {
+                console.log(error)
+            } else {
+                socket.emit("allMessages", messages)
+            }
+        })
+    })
 })
 
+app.post('/chat', (req, res) => {
+    const userId = req.body.id
+    const partyId = req.body.partyId
+    const username = req.body.username
+    const body = req.body.body
+    const time = req.body.time
+
+    let message = new Message({
+        partyId: partyId,
+        userId: userId,
+        username: username,
+        body: body,
+        time: time
+    })
+
+    message.save((error) => {
+        if(error) {
+            res.json({error: 'Unable to save!'})
+        } else {
+            res.json({success: true, message: 'Saved new message'})
+        }
+    })
+})
 
 http.listen(8080, () => {
     console.log('Server is running...')
-})
+}) 

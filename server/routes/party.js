@@ -51,7 +51,19 @@ router.put('/', (req, res) => {
     })
 })
 
-router.get('/:game', (req, res) => {
+router.get('/:partyId', (req, res) => {
+    let partyId = req.params.partyId
+
+    Party.findById(partyId, ((error, party) => {
+        if(error) {
+            res.json({error: 'Unable to get party'})
+        } else {
+            res.json(party)
+        }
+    }))
+})
+
+router.get('/game/:game', (req, res) => {
     let game = req.params.game
 
     Party.find({ 'gameTitle': game }, (error, parties) => {
