@@ -3,6 +3,12 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const http = require('http').createServer(app);
+const io = require('socket.io')(http, {
+    cors: {
+      origin: "http://localhost:3000"
+    }
+  });
 const mongoose = require('mongoose')
 
 // const fetch = require('node-fetch')
@@ -37,6 +43,14 @@ app.get('/api/search', async(req, res) => {
     }
 })
 
-app.listen(8080, () => {
+io.on("connection", socket => {
+    socket.emit("your id", socket.id);
+    socket.on("send message", body => {
+        io.emit("message", body)
+    })
+})
+
+
+http.listen(8080, () => {
     console.log('Server is running...')
 })
