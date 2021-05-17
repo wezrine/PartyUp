@@ -45,19 +45,19 @@ function Header(props) {
                 <div id="navbarBasicExample" className={`navbar-menu ${isBurgerActive ? 'is-active' : ''}`}>
                     <div className="navbar-start">
                         <p className="navbar-item">
-                            <NavLink to='/about' className="link">About</NavLink>
+                            <NavLink to='/about' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">About</NavLink>
                         </p>
 
                         <p className="navbar-item">
-                            <NavLink to='/find-party' className="link">Find a Party</NavLink>
+                            <NavLink to='/find-party' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">Find a Party</NavLink>
                         </p>
 
                         <p className="navbar-item">
-                            {props.isAuthenticated ? <NavLink to='/my-parties' className="link">My Parties</NavLink> : null}
+                            {props.isAuthenticated ? <NavLink to='/my-parties' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">My Parties</NavLink> : null}
                         </p>
 
                         <p className="navbar-item">
-                            {props.isAuthenticated ? <NavLink to='/profile' className="link">Profile</NavLink> : null}
+                            {props.isAuthenticated ? <NavLink to='/profile' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">Profile</NavLink> : null}
                         </p>
 
 
@@ -68,7 +68,7 @@ function Header(props) {
                             <div className="navbar-item">
                                 <div className="buttons">
                                     <p className="login navbar-item">
-                                        {props.isAuthenticated ? <button className="button is-danger" onClick={signOut}><strong>Sign Out</strong></button> : <NavLink to='/login' className="button is-danger"><strong>Login</strong></NavLink>}
+                                        {props.isAuthenticated ? <button className="button is-danger" onClick={signOut}><strong>Sign Out</strong></button> : <NavLink to='/login' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="button is-danger"><strong>Login</strong></NavLink>}
                                     </p>
                                 </div>
                             </div>
