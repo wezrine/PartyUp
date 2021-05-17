@@ -18,6 +18,7 @@ import ProfilePage from './components/ProfilePage'
 import AboutPage from './components/AboutPage'
 import LoginPage from './components/LoginPage';
 import FindPartyPage from './components/FindPartyPage';
+import Chat from './components/Chat/Chat'
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const token = localStorage.getItem('jsonwebtoken');
@@ -39,6 +40,7 @@ ReactDOM.render(
             <Route path = "/find-party" component = {FindPartyPage} />
             <Route path = "/about" component = {AboutPage} />
             <Route path = "/login" component = {LoginPage} />
+            <Route path = "/chat" component = {Chat} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>
