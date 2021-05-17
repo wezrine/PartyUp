@@ -14,7 +14,7 @@ function FindPartyPage() {
 
         setBackgroundURL(game.background_image)
 
-        fetch(`http://localhost:8080/party/${game.name}`)
+        fetch(`http://localhost:8080/party/game/${game.name}`)
             .then(response => response.json())
             .then(parties => {
                 setParties(parties)

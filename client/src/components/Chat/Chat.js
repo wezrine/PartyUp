@@ -1,29 +1,66 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from "socket.io-client";
+import MessageList from './MessageList'
 import Messages from "./Messages";
 import UserList from './UserList';
 
 // const SERVER = "http://localhost:8080";
 
-function Chat() {
+function Chat({ match }) {
+
+  const [party, setParty] = useState({});
   const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [messagesReal, setMessagesReal] = useState([])
 
   const socketRef = useRef();
 
   useEffect(() => {
+    getParty(match.params.partyId)
+
     socketRef.current = io.connect('http://localhost:8080');
 
     socketRef.current.on("your id", id => {
-      setYourID(id);
+      setYourID(localStorage.getItem('userId'));
+    })
+
+    socketRef.current.on('connection', socket => {
+      socketRef.current.emit('setPartyId', match.params.partyId)
+    })
+
+
+    socketRef.current.on("connection", (socket) => {
+      console.log(socket)
+    })
+
+    socketRef.current.on("allMessages", (messages) => {
+      console.log('38', messages)
+      setMessagesReal(messages)
     })
 
     socketRef.current.on("message", (message) => {
-      console.log("here");
       receivedMessage(message);
     })
   }, []);
+
+  const getParty = (partyId) => {
+    fetch(`http://localhost:8080/party/${partyId}`)
+    .then(response => response.json())
+    .then(party => {
+      setParty(party)
+    })
+  }
+
+  const saveMessage = (message) => {
+    fetch('http://localhost:8080/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(message)
+    })
+  }
 
   function receivedMessage(message) {
     setMessages(oldMsgs => [...oldMsgs, message]);
@@ -31,11 +68,18 @@ function Chat() {
 
   function sendMessage(e) {
     e.preventDefault();
+
     const messageObject = {
       body: message,
-      id: yourID,
+      time: Date().toString().slice(16,21),
+      id: localStorage.getItem('userId'),
+      partyId: party._id,
+      username: localStorage.getItem('username')
     };
     setMessage("");
+
+    saveMessage(messageObject)
+
     socketRef.current.emit("send message", messageObject);
   }
 
@@ -48,19 +92,23 @@ function Chat() {
     <section className="msger">
       <header className="msger-header">
         <div className="msger-header-title">
-          <i className="fas fa-comment-alt"></i> Party Name
+          <i className="fas fa-comment-alt"></i> {party.partyName}
         </div>
       </header>
 
+
+      
+
       <main className="msger-chat">
+      <MessageList messages={messagesReal} />
         {messages.map((message, index) => {
-          if (message.id === yourID) {
-            return (
+          if (message.id === localStorage.getItem('userId')) {
+            return ( 
               <div className="msg right-msg" key={index}>
                 <div className="msg-bubble">
                   <div className="msg-info">
-                    <div className="msg-info-name">Shawn</div>
-                    <div className="msg-info-time">12:46</div>
+                    <div className="msg-info-name">{localStorage.getItem('username')}</div>
+                    <div className="msg-info-time">{message.time}</div>
                   </div>
                   <div className="msg-text">{message.body}</div>
                 </div>
@@ -71,8 +119,8 @@ function Chat() {
             <div className="msg left-msg" key={index}>
               <div className="msg-bubble">
                 <div className="msg-info">
-                  <div className="msg-info-name">Zack</div>
-                  <div className="msg-info-time">12:45</div>
+                  <div className="msg-info-name">{message.username}</div>
+                  <div className="msg-info-time">{message.time}</div>
                 </div>
                 <div className="msg-text">{message.body}</div>
               </div>

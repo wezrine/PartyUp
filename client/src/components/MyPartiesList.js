@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { NavLink } from 'react-router-dom'
 
 function MyPartiesList (props) {
 
@@ -36,7 +37,7 @@ function MyPartiesList (props) {
                         {party.description}
                             <br />
 
-                        <time datetime="2016-1-1">{party.dateCreated}</time>
+                        <p>{party.dateCreated}</p>
                         <div>
                             <span className="tag is-danger">
                                 Casual
@@ -49,6 +50,7 @@ function MyPartiesList (props) {
                 </div>
                 <div className="card">
                     <footer className="card-footer">
+                        <NavLink to={`/party/${party._id}`} className="card-footer-item">Chat</NavLink>
                         <p onClick={() => handleEditParty(party)} className="card-footer-item">Edit</p>
                         <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
                     </footer>
