@@ -31,7 +31,7 @@ function Header(props) {
     return (
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <NavLink to='/' className="navbar-item">
+                    <NavLink to='/' onClick={() => { setisBurgerActive(false) }} className="navbar-item">
                         <img src={logo} />
                     </NavLink>
 
