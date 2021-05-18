@@ -5,7 +5,7 @@ function MemberList (props) {
 
     const memberItems = members.map((member, index) => {
         return (
-            <li>{member.username}</li>
+            <li key={index}>{member.username}</li>
         )
     })
 

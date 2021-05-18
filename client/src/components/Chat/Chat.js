@@ -30,12 +30,7 @@ function Chat({ match }) {
       socketRef.current.emit('setPartyId', match.params.partyId)
     })
     
-    socketRef.current.on("connection", (socket) => {
-      console.log(socket)
-    })
-
     socketRef.current.on("allMessages", (messages) => {
-      console.log('38', messages)
       setMessagesReal(messages)
     })
 

@@ -34,6 +34,7 @@ function MyPartiesPage() {
         setParty({
             ...party,
             userId: localStorage.getItem('userId'),
+            username: localStorage.getItem('username'),
             dateCreated: Date().toString().slice(4,21),
             [e.target.name]: e.target.value
         })

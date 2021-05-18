@@ -2,7 +2,6 @@
 function MessageList(props) {
 
     const messages = props.messages
-    console.log('here', messages)
 
     const messageItems = messages.map((message, index) => {
 

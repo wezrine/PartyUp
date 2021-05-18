@@ -13,6 +13,7 @@ router.post('/', (req, res) => {
     const background = req.body.background
     const maxMembers = req.body.maxMembers
     const dateCreated = req.body.dateCreated
+    const username = req.body.username
 
     let party = new Party({
         partyName: partyName,
@@ -25,7 +26,8 @@ router.post('/', (req, res) => {
     })
 
     const member = new Member({
-        userId: userId
+        userId: userId,
+        username: username
     })
 
     party.members.push(member)
