@@ -67,6 +67,37 @@ body {
   align-items: center;
 }
 
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical input {
+  width: 20em;
+  margin: 0.5em;
+}
+
+.login-row span {
+  height: 100% !important;
+}
+
+@media screen and (max-width: 450px) {
+
+  .login.input {
+    width: 100%;
+  }
+
+  .login.modal-card-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .guest.button {
+    margin-top: 0.5em;
+    margin-left: 0 !important;
+  }
+}
 /* Header */
 .navbar {
   margin-bottom: 0 !important;
@@ -298,13 +329,25 @@ p.login.navbar-item:hover {
   background-color: #303841;
 }
 
-.particles {
+#tsparticles {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   background-size: cover;
-  /* background-position: 50% 50%; */
   background-repeat: no-repeat;
   background-color: #1B2838;
-  /* z-index: -1; */
+}
+
+/* add party */
+.add input {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em
+}
+
+.chat-link {
+  color: #4a4a4a !important;
+}
+
+.my-parties-background {
+  min-height: 80vh;
 }

@@ -23,12 +23,13 @@ function FindPartyPage() {
 
     const updateParty = (partyId) => {
         const userId = localStorage.getItem('userId')
+        const username = localStorage.getItem('username')
         fetch(`http://localhost:8080/party/join/${partyId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userId})
+            body: JSON.stringify({userId, username})
         }).then(() => {
             history.push('/my-parties')
         })

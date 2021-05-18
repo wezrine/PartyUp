@@ -78,9 +78,11 @@ router.get('/game/:game', (req, res) => {
 router.post('/join/:partyId', (req, res) => {
     const partyId = req.params.partyId
     const userId = req.body.userId
+    const username = req.body.username
 
     const member = new Member({
-        userId: userId
+        userId: userId,
+        username: username
     })
 
     Party.findById(partyId, (error, party) => {

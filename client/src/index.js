@@ -14,7 +14,6 @@ import * as actionCreators from './components/store/creators/actionCreators';
 import BaseLayout from './components/BaseLayout'
 import LandingPage from './components/LandingPage'
 import MyPartiesPage from './components/MyPartiesPage'
-import ProfilePage from './components/ProfilePage'
 import AboutPage from './components/AboutPage'
 import LoginPage from './components/LoginPage';
 import FindPartyPage from './components/FindPartyPage';
@@ -36,7 +35,6 @@ ReactDOM.render(
           <Switch>
             <Route exact path = "/" component = {LandingPage} />
             <Route path = "/my-parties" component = {requireAuth(MyPartiesPage)} />
-            <Route path = "/profile" component = {requireAuth(ProfilePage)} />
             <Route path = "/find-party" component = {FindPartyPage} />
             <Route path = "/about" component = {AboutPage} />
             <Route path = "/login" component = {LoginPage} />

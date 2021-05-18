@@ -55,13 +55,6 @@ function Header(props) {
                         <p className="navbar-item">
                             {props.isAuthenticated ? <NavLink to='/my-parties' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">My Parties</NavLink> : null}
                         </p>
-
-                        <p className="navbar-item">
-                            {props.isAuthenticated ? <NavLink to='/profile' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">Profile</NavLink> : null}
-                        </p>
-
-
-                        
                     </div>
 
                         <div className="navbar-end">

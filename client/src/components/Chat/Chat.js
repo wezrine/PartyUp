@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from "socket.io-client";
+import MemberList from './MemberList';
 import MessageList from './MessageList'
-import Messages from "./Messages";
-import UserList from './UserList';
 
 // const SERVER = "http://localhost:8080";
 
@@ -13,6 +12,8 @@ function Chat({ match }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [messagesReal, setMessagesReal] = useState([])
+  const [members, setMembers] = useState([])
+  const [isModalActive, setIsModalActive] = useState(false)
 
   const socketRef = useRef();
 
@@ -28,8 +29,7 @@ function Chat({ match }) {
     socketRef.current.on('connection', socket => {
       socketRef.current.emit('setPartyId', match.params.partyId)
     })
-
-
+    
     socketRef.current.on("connection", (socket) => {
       console.log(socket)
     })
@@ -47,10 +47,11 @@ function Chat({ match }) {
 
   const getParty = (partyId) => {
     fetch(`http://localhost:8080/party/${partyId}`)
-    .then(response => response.json())
-    .then(party => {
-      setParty(party)
-    })
+      .then(response => response.json())
+      .then(party => {
+        setParty(party)
+        setMembers(party.members)
+      })
   }
 
   const saveMessage = (message) => {
@@ -72,7 +73,7 @@ function Chat({ match }) {
 
     const messageObject = {
       body: message,
-      time: Date().toString().slice(16,21),
+      time: Date().toString().slice(16, 21),
       id: localStorage.getItem('userId'),
       partyId: party._id,
       username: localStorage.getItem('username')
@@ -95,19 +96,17 @@ function Chat({ match }) {
         <div className="msger-header-title">
           <i className="fas fa-comment-alt"></i> {party.partyName}
         </div>
+        <span onClick={() => setIsModalActive(true)} className="tag is-dark">Members</span>
       </header>
-
-
-      
 
       <main className="msger-chat">
         {/* Past messages pulled on page load */}
-      <MessageList messages={messagesReal} />
+        <MessageList messages={messagesReal} />
 
-      {/* Live messages */}
+        {/* Live messages */}
         {messages.map((message, index) => {
           if (message.id === localStorage.getItem('userId')) {
-            return ( 
+            return (
               <div className="msg right-msg" key={index}>
                 <div className="msg-bubble">
                   <div className="msg-info">
@@ -137,6 +136,19 @@ function Chat({ match }) {
         <input type="text" className="msger-input" placeholder="Enter your message..." value={message} onChange={handleChange} />
         <button type="submit" className="msger-send-btn">Send</button>
       </form>
+
+      <div className={`modal ${isModalActive ? 'is-active' : ''}`}>
+        <div className="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">Party Members</p>
+            <button onClick={() => setIsModalActive(false)} className="delete" aria-label="close"></button>
+          </header>
+          <section className="modal-card-body">
+            <MemberList members = {members} />
+          </section>
+        </div>
+      </div>
     </section>
   )
 }
