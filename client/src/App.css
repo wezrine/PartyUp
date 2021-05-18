@@ -1,3 +1,9 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+html {
+  font-family: 'Rajdhani', sans-serif;
+} */
+
 body {
   background: #1B2838;
 }
@@ -13,8 +19,6 @@ body {
   background-size: cover;
   position: relative;
   width: 100%;
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
   box-shadow: inset 0 0 5em 4em #1B2838;
 }
 
@@ -79,6 +83,7 @@ body {
 p.navbar-item:hover {
   background:#EA0070 !important;
   color: #fff !important;
+  transition: background 0.23s;
 }
 
 p.login.navbar-item:hover {
@@ -98,9 +103,15 @@ p.login.navbar-item:hover {
   padding: 2em 0 3em 0;
 }
 
-.searchbar-container .searchbar input {
-  width: 30em;
+.searchbar-container .searchbar {
+  max-width: 30em;
+  width: 80%;
 }
+
+/* .searchbar-container .searchbar input {
+  max-width: 30em;
+  width: 80%;
+} */
 
 .party-content {
   display: flex;
@@ -120,12 +131,48 @@ p.login.navbar-item:hover {
 
 /* Parties */
 
+.no-parties-container {
+  align-items: center;
+}
+
+.no-parties {
+  color: #fff;
+  font-size: 2em;
+}
+
 .add-party-container {
   padding: 2em 0 3em 0;
 }
 
 .card {
   width: 20em;
+}
+
+.card-content {
+  padding-bottom: 0 !important;
+}
+
+.content .party-description {
+  padding-bottom: 0.5em;
+  min-height: 5em;
+}
+
+.content .party-time {
+  font-size: 0.75em;
+  color: rgb(138, 138, 138);
+}
+
+.card-footer-item.hover:hover {
+  background: #00ADB5;
+  color: #fff;
+  transition: background 0.25s;
+}
+
+.card-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 1em;
 }
 
 /* Footer */

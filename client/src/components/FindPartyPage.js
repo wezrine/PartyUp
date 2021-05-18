@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { useHistory } from "react-router-dom";
-import GamesList from './GamesList'
+import { useHistory, NavLink } from "react-router-dom";
+import FindPartyList from './FindPartyList'
 import Search from './Search';
 
 function FindPartyPage() {
@@ -9,11 +9,11 @@ function FindPartyPage() {
 
     const [parties, setParties] = useState([])
     const [backgroundURL, setBackgroundURL] = useState('')
+    const [hasSearched, setHasSearched] = useState(false)
 
     const getParties = (game) => {
-
+        setHasSearched(true)
         setBackgroundURL(game.background_image)
-
         fetch(`http://localhost:8080/party/game/${game.name}`)
             .then(response => response.json())
             .then(parties => {
@@ -40,11 +40,16 @@ function FindPartyPage() {
             
                 <div className="find-party-content">
                     <div className="is-flex is-justify-content-center searchbar-container">
-                        <div className="is-flex searchbar">
+                        <div className="is-flex is-flex-direction-column searchbar">
                             <Search gameClicked={getParties} />
                         </div>
                     </div>
-                    <GamesList parties={parties} onJoinParty={updateParty} />
+                    <div className="party-content">
+                        {parties.length == 0 && hasSearched == true ? <div className="no-parties-container is-flex is-justify-content-center is-flex-direction-column"><div className="no-parties">No Parties?</div><NavLink to='/my-parties' className='button is-info cta'>Create a Party</NavLink></div> : ''}
+                        <FindPartyList parties={parties} onJoinParty={updateParty} />
+                    </div>
+                    
+                    
                 </div>
             </div>
         </Fragment>

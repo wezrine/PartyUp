@@ -66,7 +66,7 @@ router.get('/:partyId', (req, res) => {
 router.get('/game/:game', (req, res) => {
     let game = req.params.game
 
-    Party.find({ 'gameTitle': game }, (error, parties) => {
+    Party.find({ 'gameTitle': game}, (error, parties) => {
         if (error) {
             res.json({ error: 'Unable to get parties' })
         } else {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import MyPartiesList from './MyPartiesList'
 import Search from './Search'
+import Tagsfield from 'bulma-tagsfield'
 
 function MyPartiesPage() {
 
@@ -118,7 +119,7 @@ function MyPartiesPage() {
     return (
         <div>
             <div className="is-flex is-justify-content-center add-party-container">
-                <button onClick={openAddModal} className="button is-info">Create A New Party</button>
+                <button onClick={openAddModal} className="button is-info">Create A Party</button>
             </div>
             <div className="party-content">
                 <MyPartiesList parties = {parties} leaveParty = {removeUserFromParty} editParty = {openEditParty} />
@@ -135,6 +136,7 @@ function MyPartiesPage() {
                         <input onChange={handleOnChange} id="partyName" className='input' type='text' placeholder='Party Name' name='partyName' />
                         <input onChange={handleOnChange} id="description" className='input' type='text' placeholder='Description' name='description' />
                         <input onChange={handleOnChange} id="maxMembers" type="number" className="input" min="2" max="32" placeholder="Number of Members" name="maxMembers"/>
+                        <input className="input" placeholder="Tags"></input>
                     </section>
                     <footer className="modal-card-foot">
                         <button onClick={handleAddParty} className="button is-danger">Create Party</button>
