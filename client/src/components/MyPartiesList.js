@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
 
 function MyPartiesList (props) {
-
+    
     const parties = props.parties
 
     const partyItems = parties.map((party, index) => {
@@ -14,6 +14,12 @@ function MyPartiesList (props) {
         const handleEditParty = (party) => {
             props.editParty(party)
         }
+
+        const currentDate = Date()
+        const dateOneObj = new Date(party.dateCreated);
+        const dateTwoObj = new Date(currentDate);
+        const milliseconds = Math.abs(dateTwoObj - dateOneObj);
+        const hours = milliseconds / 36e5;
 
         return (
             <div className="card" key={index}>
@@ -36,8 +42,7 @@ function MyPartiesList (props) {
                     <div className="content">
                         {party.description}
                             <br />
-
-                        <p>{party.dateCreated}</p>
+                        <p>Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                         <div>
                             <span className="tag is-danger">
                                 Casual

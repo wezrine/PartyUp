@@ -9,7 +9,7 @@ function FindPartyPage() {
 
     const [parties, setParties] = useState([])
     const [backgroundURL, setBackgroundURL] = useState('')
-
+    
     const getParties = (game) => {
 
         setBackgroundURL(game.background_image)
