@@ -97,7 +97,7 @@ function Chat({ match }) {
       <main className="msger-chat">
         {/* Past messages pulled on page load */}
         <MessageList messages={messagesReal} />
-
+        <br/>
         {/* Live messages */}
         {messages.map((message, index) => {
           if (message.id === localStorage.getItem('userId')) {
