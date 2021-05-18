@@ -11,6 +11,12 @@ function FindPartyList (props) {
             props.onJoinParty(partyId)
         }
 
+        const currentDate = Date()
+        const dateOneObj = new Date(party.dateCreated);
+        const dateTwoObj = new Date(currentDate);
+        const milliseconds = Math.abs(dateTwoObj - dateOneObj);
+        const hours = milliseconds / 36e5;
+
         return (
                 <div className="card" key={index}>
                     <div className="card-content">
@@ -26,7 +32,7 @@ function FindPartyList (props) {
 
                         <div className="content">
                             <p className="party-description">{party.description}</p>
-                            <p className="party-time">{party.dateCreated}</p>
+                            <p className="party-time">Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                         </div>
                     </div>
                     <div className="card">

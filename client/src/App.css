@@ -303,3 +303,14 @@ p.login.navbar-item:hover {
 .msger-chat {
   background-color: #303841;
 }
+
+.particles {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  /* background-position: 50% 50%; */
+  background-repeat: no-repeat;
+  background-color: #1B2838;
+  /* z-index: -1; */
+}
