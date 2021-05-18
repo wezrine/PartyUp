@@ -38,8 +38,11 @@ function MyPartiesList (props) {
                             <p className="subtitle is-6">{party.gameTitle}</p>
                         </div>
                     </div>
-
                     <div className="content">
+<<<<<<< HEAD
+                            <p className="party-description">{party.description}</p>
+                            <p className="party-time">{party.dateCreated}</p>
+=======
                         {party.description}
                             <br />
                         <p>Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
@@ -51,15 +54,14 @@ function MyPartiesList (props) {
                                 Mic
                                 </span>
                         </div>
+>>>>>>> main
                     </div>
                 </div>
-                <div className="card">
-                    <footer className="card-footer">
+                <footer className="card-footer">
                         <NavLink to={`/party/${party._id}`} className="card-footer-item">Chat</NavLink>
                         <p onClick={() => handleEditParty(party)} className="card-footer-item">Edit</p>
                         <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
-                    </footer>
-                </div>
+                </footer>
             </div>
         )
     })

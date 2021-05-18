@@ -1,5 +1,7 @@
+import { Fragment } from 'react'
 
-function GamesList (props) {
+
+function FindPartyList (props) {
 
     const parties = props.parties
     
@@ -19,7 +21,7 @@ function GamesList (props) {
                 <div className="card" key={index}>
                     <div className="card-content">
                         <div className="is-flex is-justify-content-flex-end">
-                            <p>5 Online</p>
+                            <p>{party.members.length}/{party.maxMembers} members</p>
                         </div>
                         <div className="media">
                             <div className="media-content">
@@ -29,23 +31,13 @@ function GamesList (props) {
                         </div>
 
                         <div className="content">
-                            {party.description}
-                            <br />
-
-                            <p>Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
-                            <div>
-                                <span className="tag is-danger">
-                                    Casual
-                                </span>
-                                <span className="tag is-danger">
-                                    Mic
-                                </span>
-                            </div>
+                            <p className="party-description">{party.description}</p>
+                            <p className="party-time">Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                         </div>
                     </div>
                     <div className="card">
                         <footer className="card-footer">
-                            <p onClick={() => handleJoin(party._id)} className="card-footer-item">Join</p>
+                            {party.maxMembers <= party.members.length ? <p className="card-footer-item">Party Full</p> : <p onClick={() => handleJoin(party._id)} className="card-footer-item hover">Join</p>}
                         </footer>
                     </div>
                 </div>
@@ -53,10 +45,10 @@ function GamesList (props) {
     })
 
     return (
-        <div className="party-content">
+        <Fragment>
             {partyItems}
-        </div>
+        </Fragment>
     )
 }
 
-export default GamesList
+export default FindPartyList

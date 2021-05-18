@@ -39,7 +39,6 @@ function Search(props) {
 
     return (
         <Fragment>
-            <div>
                 <input
                     id="searchbar"
                     className="add input"
@@ -60,7 +59,6 @@ function Search(props) {
                         ) : null}
                     </Fragment>
                 ) : null}
-            </div>
         </Fragment>
     )
 }
