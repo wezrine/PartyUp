@@ -39,22 +39,8 @@ function MyPartiesList (props) {
                         </div>
                     </div>
                     <div className="content">
-<<<<<<< HEAD
                             <p className="party-description">{party.description}</p>
-                            <p className="party-time">{party.dateCreated}</p>
-=======
-                        {party.description}
-                            <br />
-                        <p>Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
-                        <div>
-                            <span className="tag is-danger">
-                                Casual
-                                </span>
-                            <span className="tag is-danger">
-                                Mic
-                                </span>
-                        </div>
->>>>>>> main
+                            <p className="party-time">Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                     </div>
                 </div>
                 <footer className="card-footer">

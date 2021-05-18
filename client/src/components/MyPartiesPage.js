@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import MyPartiesList from './MyPartiesList'
 import Search from './Search'
-import Tagsfield from 'bulma-tagsfield'
 
 function MyPartiesPage() {
 
