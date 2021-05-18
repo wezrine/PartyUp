@@ -108,11 +108,6 @@ p.login.navbar-item:hover {
   width: 80%;
 }
 
-/* .searchbar-container .searchbar input {
-  max-width: 30em;
-  width: 80%;
-} */
-
 .party-content {
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +180,6 @@ p.login.navbar-item:hover {
 .footer strong {
   color: #fff;
 }
-
 
 /* Chat */
 .msger {

@@ -11,7 +11,7 @@ export default function(ComposedComponent) {
 
             // if the user is not authenticated, redirect to home page
             if(this.props.isAuthenticated === false) {
-                this.props.history.push('/')
+                this.props.history.push('/login')
             }
         }
 
