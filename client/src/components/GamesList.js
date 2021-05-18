@@ -9,6 +9,12 @@ function GamesList (props) {
             props.onJoinParty(partyId)
         }
 
+        const currentDate = Date()
+        const dateOneObj = new Date(party.dateCreated);
+        const dateTwoObj = new Date(currentDate);
+        const milliseconds = Math.abs(dateTwoObj - dateOneObj);
+        const hours = milliseconds / 36e5;
+
         return (
                 <div className="card" key={index}>
                     <div className="card-content">
@@ -26,7 +32,7 @@ function GamesList (props) {
                             {party.description}
                             <br />
 
-                            <time dateTime="2016-1-1">{party.dateCreated}</time>
+                            <p>Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                             <div>
                                 <span className="tag is-danger">
                                     Casual
