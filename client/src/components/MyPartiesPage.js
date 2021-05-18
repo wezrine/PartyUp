@@ -116,7 +116,7 @@ function MyPartiesPage() {
     }
 
     return (
-        <div>
+        <div className="my-parties-background">
             <div className="is-flex is-justify-content-center add-party-container">
                 <button onClick={openAddModal} className="button is-info">Create A Party</button>
             </div>
@@ -125,7 +125,7 @@ function MyPartiesPage() {
             </div>
             <div className={`modal ${isAddModalActive ? 'is-active' : ''}`}>
                 <div className="modal-background"></div>
-                <div className="modal-card">
+                <div className="add modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Create Party</p>
                         <button onClick={closeAddModal} className="delete" aria-label="close"></button>
@@ -135,7 +135,6 @@ function MyPartiesPage() {
                         <input onChange={handleOnChange} id="partyName" className='input' type='text' placeholder='Party Name' name='partyName' />
                         <input onChange={handleOnChange} id="description" className='input' type='text' placeholder='Description' name='description' />
                         <input onChange={handleOnChange} id="maxMembers" type="number" className="input" min="2" max="32" placeholder="Number of Members" name="maxMembers"/>
-                        <input className="input" placeholder="Tags"></input>
                     </section>
                     <footer className="modal-card-foot">
                         <button onClick={handleAddParty} className="button is-danger">Create Party</button>
@@ -145,7 +144,7 @@ function MyPartiesPage() {
             </div>
             <div className={`modal ${isEditModalActive ? 'is-active' : ''}`}>
                 <div className="modal-background"></div>
-                <div className="modal-card">
+                <div className="add modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Edit Party</p>
                         <button onClick={closeEditModal} className="delete" aria-label="close"></button>

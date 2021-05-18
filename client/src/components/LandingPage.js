@@ -6,7 +6,7 @@ function LandingPage(props) {
     return (
             <section className="hero is-fullheight">
                 
-                    <div className="particles"><ParticleBackground /></div>
+                <ParticleBackground />
                 <div className="hero-body">
                 
                     <div className="container has-text-centered" >

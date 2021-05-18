@@ -44,7 +44,7 @@ const LoginPage = (props) => {
     const handleContinueAsGuest = () => {
 
         let guest = {
-            username: 'guest',
+            username: 'Guest',
             password: 'guest123'
         }
 
@@ -105,7 +105,7 @@ const LoginPage = (props) => {
                         {message}
                     </div>
                 </section>
-                <footer className="modal-card-foot">
+                <footer className="login modal-card-foot">
                     <div>
                         {isRegisterActive ? <button onClick={handleRegister} className="button is-link">Register</button> : <button onClick={handleLogin} className="button is-link">Login</button>}
                         {isRegisterActive ? <button className="button" onClick={() => { setisRegisterActive(false) }}>Login</button> : <button className="button" onClick={() => { setisRegisterActive(true) }}>Register</button>}

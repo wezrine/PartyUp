@@ -44,7 +44,7 @@ function MyPartiesList (props) {
                     </div>
                 </div>
                 <footer className="card-footer">
-                        <NavLink to={`/party/${party._id}`} className="card-footer-item">Chat</NavLink>
+                        <NavLink to={`/party/${party._id}`} className="chat-link card-footer-item">Chat</NavLink>
                         <p onClick={() => handleEditParty(party)} className="card-footer-item">Edit</p>
                         <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
                 </footer>
