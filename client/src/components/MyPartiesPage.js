@@ -48,7 +48,7 @@ function MyPartiesPage() {
     }
 
     const handleAddParty = () => {
-        fetch('http://localhost:8080/party', {
+        fetch('https://partyup-520.herokuapp.com/party', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ function MyPartiesPage() {
 
     const getMyParties = () => {
         const userId = localStorage.getItem('userId') 
-        fetch(`http://localhost:8080/party/my-parties/${userId}`)
+        fetch(`https://partyup-520.herokuapp.com/party/my-parties/${userId}`)
         .then(response => response.json())
         .then(parties => {
             setParties(parties)
@@ -87,7 +87,7 @@ function MyPartiesPage() {
 
     const removeUserFromParty = (partyId) => {
         const userId = localStorage.getItem('userId')
-        fetch(`http://localhost:8080/party/leave/${partyId}/${userId}`, {
+        fetch(`https://partyup-520.herokuapp.com/party/leave/${partyId}/${userId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ function MyPartiesPage() {
     }
 
     const updateParty = (updatedParty) => {
-        fetch('http://localhost:8080/party', {
+        fetch('https://partyup-520.herokuapp.com/party', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

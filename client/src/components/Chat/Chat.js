@@ -20,7 +20,7 @@ function Chat({ match }) {
   useEffect(() => {
     getParty(match.params.partyId)
 
-    socketRef.current = io.connect('http://localhost:8080');
+    socketRef.current = io.connect('https://partyup-520.herokuapp.com');
 
     socketRef.current.on("your id", id => {
       setYourID(localStorage.getItem('userId'));
@@ -41,7 +41,7 @@ function Chat({ match }) {
   }, [match.params.partyId]);
 
   const getParty = (partyId) => {
-    fetch(`http://localhost:8080/party/${partyId}`)
+    fetch(`https://partyup-520.herokuapp.com/party/${partyId}`)
       .then(response => response.json())
       .then(party => {
         setParty(party)
@@ -50,7 +50,7 @@ function Chat({ match }) {
   }
 
   const saveMessage = (message) => {
-    fetch('http://localhost:8080/chat', {
+    fetch('https://partyup-520.herokuapp.com/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

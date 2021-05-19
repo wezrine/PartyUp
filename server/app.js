@@ -4,7 +4,7 @@ const cors = require('cors')
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
     cors: {
-      origin: "http://localhost:3000"
+      origin: "https://party-up.surge.sh"
     }
   });
 const mongoose = require('mongoose')

@@ -19,7 +19,7 @@ const LoginPage = (props) => {
     }  
 
     const handleLogin = () => {
-        fetch('http://localhost:8080/user/login', {
+        fetch('https://partyup-520.herokuapp.com/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const LoginPage = (props) => {
             password: 'guest123'
         }
 
-        fetch('http://localhost:8080/user/login', {
+        fetch('https://partyup-520.herokuapp.com/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const LoginPage = (props) => {
     }
 
     const handleRegister = () => {
-        fetch('http://localhost:8080/user/register', {
+        fetch('https://partyup-520.herokuapp.com/user/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

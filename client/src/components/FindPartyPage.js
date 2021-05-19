@@ -14,7 +14,7 @@ function FindPartyPage() {
     const getParties = (game) => {
         setHasSearched(true)
         setBackgroundURL(game.background_image)
-        fetch(`http://localhost:8080/party/game/${game.name}`)
+        fetch(`https://partyup-520.herokuapp.com/party/game/${game.name}`)
             .then(response => response.json())
             .then(parties => {
                 setParties(parties)
@@ -24,7 +24,7 @@ function FindPartyPage() {
     const updateParty = (partyId) => {
         const userId = localStorage.getItem('userId')
         const username = localStorage.getItem('username')
-        fetch(`http://localhost:8080/party/join/${partyId}`, {
+        fetch(`https://partyup-520.herokuapp.com/party/join/${partyId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

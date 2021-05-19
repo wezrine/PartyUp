@@ -10,7 +10,7 @@ function Search(props) {
     async function getRawgApi(gameName) {
         if (gameName !== '') {
             try {
-                const response = await fetch(`http://localhost:8080/api/search?search=${gameName.toLowerCase()}`);
+                const response = await fetch(`https://partyup-520.herokuapp.com/api/search?search=${gameName.toLowerCase()}`);
                 const json = await response.json();
                 setData(json);
                 setDataIsReady(true);
