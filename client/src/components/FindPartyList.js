@@ -35,11 +35,9 @@ function FindPartyList (props) {
                             <p className="party-time">Started {hours < 10 ? hours.toString().slice(0,1) : hours.toString().slice(0,2)} hours ago</p>
                         </div>
                     </div>
-                    <div className="card">
                         <footer className="card-footer">
                             {party.maxMembers <= party.members.length ? <p className="card-footer-item">Party Full</p> : <p onClick={() => handleJoin(party._id)} className="card-footer-item hover">Join</p>}
                         </footer>
-                    </div>
                 </div>
         )
     })
