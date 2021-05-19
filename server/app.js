@@ -1,5 +1,3 @@
-// API KEY: AA3FAF927A5D3C878127978E156DBE73
-
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -10,6 +8,8 @@ const io = require('socket.io')(http, {
     }
   });
 const mongoose = require('mongoose')
+
+const PORT = process.env.PORT || 8080
 
 // const fetch = require('node-fetch')
 const axios = require('axios')
@@ -87,6 +87,6 @@ app.post('/chat', (req, res) => {
     })
 })
 
-http.listen(8080, () => {
+http.listen(process.env.PORT, () => {
     console.log('Server is running...')
 }) 
