@@ -139,12 +139,15 @@ p.login.navbar-item:hover {
   width: 80%;
 }
 
+.card {
+  margin: 1em;
+}
+
 .party-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 2em 2em 2em;
-  gap: 2em;
+  padding: 0 2em 2em 2em;  
 }
 .dropdown-item:hover {
   background: #00ADB5;
@@ -180,6 +183,17 @@ p.login.navbar-item:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.50), 0 10px 10px rgba(0,0,0,0.50);
 }
 
+@media screen and (max-width: 765px) {
+  .card {
+    transition: none;
+  }
+  
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 .card-content {
   padding-bottom: 0 !important;
 }
@@ -200,15 +214,15 @@ p.login.navbar-item:hover {
   transition: background 0.25s;
 }
 
-/* .card-footer-item.hover.chat-link:hover{
-  color: #fff;
-} */
-
 .card-footer {
   position: relative;
   bottom: 0;
   width: 100%;
   margin-top: 1em;
+}
+
+a.chat-link.card-footer-item.hover:hover {
+  color: #fff !important;
 }
 
 /* Footer */
