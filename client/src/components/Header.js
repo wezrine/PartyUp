@@ -45,10 +45,6 @@ function Header(props) {
                 <div id="navbarBasicExample" className={`navbar-menu ${isBurgerActive ? 'is-active' : ''}`}>
                     <div className="navbar-start">
                         <p className="navbar-item">
-                            <NavLink to='/about' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">About</NavLink>
-                        </p>
-
-                        <p className="navbar-item">
                             <NavLink to='/find-party' onClick={() => { setisBurgerActive(!isBurgerActive) }} className="link">Find a Party</NavLink>
                         </p>
 
