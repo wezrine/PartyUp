@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import MemberList from './MemberList';
 import MessageList from './MessageList'
 
-// const SERVER = "http://localhost:8080";
+
 
 function Chat({ match }) {
 

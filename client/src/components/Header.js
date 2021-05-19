@@ -32,7 +32,7 @@ function Header(props) {
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <NavLink to='/' onClick={() => { setisBurgerActive(false) }} className="navbar-item">
-                        <img src={logo} />
+                        <img src={logo} alt="Party Up logo" />
                     </NavLink>
 
                         <p onClick={() => { setisBurgerActive(!isBurgerActive) }} role="button" className={`navbar-burger burger ${isBurgerActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

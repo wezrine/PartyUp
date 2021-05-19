@@ -25,7 +25,7 @@ function MyPartiesList (props) {
             <div className="card" key={index}>
                 <div className="card-image">
                     <figure className="image is-4by3">
-                        <img src={party.background} alt="Placeholder image" />
+                        <img src={party.background} alt="Game background" />
                     </figure>
                 </div>
                 <div className="card-content">
@@ -44,9 +44,9 @@ function MyPartiesList (props) {
                     </div>
                 </div>
                 <footer className="card-footer">
-                        <NavLink to={`/party/${party._id}`} className="chat-link card-footer-item">Chat</NavLink>
-                        <p onClick={() => handleEditParty(party)} className="card-footer-item">Edit</p>
-                        <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item">Leave</p>
+                        <NavLink to={`/party/${party._id}`} className="chat-link card-footer-item hover">Chat</NavLink>
+                        <p onClick={() => handleEditParty(party)} className="card-footer-item hover">Edit</p>
+                        <p onClick={() => handleLeaveParty(party._id)} className="card-footer-item hover">Leave</p>
                 </footer>
             </div>
         )

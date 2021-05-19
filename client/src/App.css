@@ -172,6 +172,12 @@ p.login.navbar-item:hover {
 
 .card {
   width: 20em;
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.50), 0 10px 10px rgba(0,0,0,0.50);
 }
 
 .card-content {
@@ -193,6 +199,10 @@ p.login.navbar-item:hover {
   color: #fff;
   transition: background 0.25s;
 }
+
+/* .card-footer-item.hover.chat-link:hover{
+  color: #fff;
+} */
 
 .card-footer {
   position: relative;
