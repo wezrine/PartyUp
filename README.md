@@ -10,7 +10,9 @@ http://party-up.surge.sh/
 Working Version 1.0
   
 ## Screenshots
-
+<img src="./pictures/sc01.png"/>
+<img src="./pictures/sc02.png"/>
+<img src="./pictures/sc04.png"/>
  
 ## Tech/Framework used
  
