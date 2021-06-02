@@ -15,7 +15,7 @@ Working Version 1.0
 <img src="./pictures/sc04.png"/>
  
 ## Tech/Framework used
-<b>Built With</b>JavaScript, React, Redux, Node.js, Express, MongoDB, Socket.io, Bulma, HTML, and CSS.
+<b>Built With </b>JavaScript, React, Redux, Node.js, Express, MongoDB, Socket.io, Bulma, HTML, and CSS.
    
 ## API Reference
 
