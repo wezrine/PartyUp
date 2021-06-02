@@ -8,6 +8,9 @@ http://party-up.surge.sh/
  
 ## Build Status
 Working Version 1.0
+
+## Video
+https://youtu.be/lLtdO_4sJRQ
   
 ## Screenshots
 <img src="./pictures/sc01.png"/>
